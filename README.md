@@ -48,7 +48,7 @@ Open [http://localhost:8080](http://localhost:8080) with your browser to see the
 Cette section décrit les principaux endpoints disponibles, leurs méthodes HTTP, paramètres et exemples de requêtes et de réponses.
 
 - **Posts**
-  Endpoint pour la creation des post par un user
+  Endpoint pour la creation des post 
   ```
     router.get('/posts/:id', this.postsController.getPostById.bind(this.postsController));
   ```
@@ -62,6 +62,35 @@ Cette section décrit les principaux endpoints disponibles, leurs méthodes HTTP
   ```
 
   
-- **Posts**
+- **Comments**
+
+    Endpoint pour la creation des comments
+  ```
+   router.post('/posts/:postId/comments',authJwt.verifyToken, validateCreateComment,this.commentsController.addCommentToPost.bind(this.commentsController));
+  ```
+  Endpoint pour la mis à jour des comments
+  ```
+   router.put('/comments/:id',authJwt.verifyToken,validateUpdateComment,this.commentsController.updateComment.bind(this.commentsController));
+  ```
+  Endpoint pour la suppression des comments
+  ```
+   router.delete('/comments/:id',authJwt.verifyToken,this.commentsController.deleteComment.bind(this.commentsController));
+  ```
+
+  ### Methodes HTTP
+
+  ```
+  Post
+  ```
+  ```
+  Get
+  ```
+  ```
+  Put
+  ```
+  ```
+  Delete
+  ```
+
   
 
