@@ -37,19 +37,25 @@ npm run dev
 Open [http://localhost:8080](http://localhost:8080) with your browser to see the result.
 
 
-### Endpoints de l'API
+### Entites
+
+- **Utilisateurs**
+- **Posts**
+- **Commentaires**
+
+ ### Endpoints de l'API
 
 Cette section décrit les principaux endpoints disponibles, leurs méthodes HTTP, paramètres et exemples de requêtes et de réponses.
 
 - **Posts**
-- Posts
-Créer un Post
-Récupérer un Post par ID
-Upvote/Downvote un Post
-- **TypeScript**
-- **Express**
-- **Firestore** (Base de données)
+  #Endpoint pour la creation des post par un user
+    router.get('/posts/:id', this.postsController.getPostById.bind(this.postsController));
+  #Endpoint pour la mis à jour des post 
+  router.put('/posts/:id', authJwt.verifyToken, validateUpdatePost, this.postsController.updatePost.bind(this.postsController));
+  #Endpoint pour la suppression des post
+  router.delete('/posts/:id', authJwt.verifyToken, this.postsController.deletePost.bind(this.postsController));
 
-- 
-
+  
+- **Posts**
+  
 
