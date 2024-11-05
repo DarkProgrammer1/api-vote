@@ -126,4 +126,114 @@ export class UsersService {
       }
     };
   }
+
+  async updateUser(userId: string, userData: Partial<User>): Promise<IResBody> {
+    const userDoc = await this.db.users.doc(userId).get();
+
+    if (!userDoc.exists) {
+      return {
+        status: 404,
+        message: 'User not found',
+      };
+    }
+
+    const updatedData = {
+      ...userDoc.data(),
+      ...userData,
+      updatedAt: firestoreTimestamp.now(),
+    };
+
+    await this.db.users.doc(userId).update(updatedData);
+
+    return {
+      status: 200,
+      message: 'User updated successfully!',
+      data: {
+        id: userId,
+        ...updatedData,
+      },
+    };
+  }
+
+  async updateCurrentUser(userId: string, userData: Partial<User>): Promise<IResBody> {
+    const userDoc = await this.db.users.doc(userId).get();
+
+    if (!userDoc.exists) {
+      return {
+        status: 404,
+        message: 'User not found',
+      };
+    }
+
+    const updatedData = {
+      ...userDoc.data(),
+      ...userData,
+      updatedAt: firestoreTimestamp.now(),
+    };
+
+    await this.db.users.doc(userId).update(updatedData);
+
+    return {
+      status: 200,
+      message: 'User updated successfully!',
+      data: {
+        id: userId,
+        ...updatedData,
+      },
+    };
+  }
+
+  async deleteUser(userId: string): Promise<IResBody> {
+    const userDoc = await this.db.users.doc(userId).get();
+
+    if (!userDoc.exists) {
+      return {
+        status: 404,
+        message: 'User not found',
+      };
+    }
+
+    await this.db.users.doc(userId).delete();
+
+    return {
+      status: 200,
+      message: 'User deleted successfully!',
+    };
+  }
+
+  async updatePassword(userId: string, currentPassword: string, newPassword: string): Promise<IResBody> {
+    const userDoc = await this.db.users.doc(userId).get();
+
+    if (!userDoc.exists) {
+      return {
+        status: 404,
+        message: 'User not found',
+      };
+    }
+
+    const user = userDoc.data() as User;
+
+    // Check if current password matches
+    const isPasswordValid = comparePasswords(currentPassword, user.password as string);
+
+    if (!isPasswordValid) {
+      return {
+        status: 401,
+        message: 'Current password is incorrect',
+      };
+    }
+
+    // Update password with the encrypted new password
+    await this.db.users.doc(userId).update({
+      password: encryptPassword(newPassword),
+      updatedAt: firestoreTimestamp.now(),
+    });
+
+    return {
+      status: 200,
+      message: 'Password updated successfully',
+    };
+  }
+
+
 }
