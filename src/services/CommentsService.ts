@@ -88,7 +88,7 @@ export class CommentsService {
 
     const comment = commentDoc.data() as Comment;
 
-    // Check if the user is the comment owner or an admin
+    
     if (comment.createdBy !== userId && userRole !== 'admin') {
       return {
         status: 403,
@@ -96,7 +96,7 @@ export class CommentsService {
       };
     }
 
-    // Update the comment with the new data
+
     await commentRef.update({
       ...updatedData,
       updatedAt: firestoreTimestamp.now(),
@@ -127,7 +127,7 @@ export class CommentsService {
 
     const comment = commentDoc.data();
 
-    // Check if the user is the comment owner or an admin
+
     if (comment?.createdBy !== userId && userRole !== 'admin') {
       return {
         status: 403,
@@ -135,7 +135,7 @@ export class CommentsService {
       };
     }
 
-    // Delete the comment
+
     await commentRef.delete();
 
     return {
@@ -158,7 +158,7 @@ export class CommentsService {
     const comment = commentDoc.data() as Comment;
     let voteCount = comment.voteCount || 0;
 
-    // Apply the vote
+
     if (voteType === 'upvote') {
       voteCount += 1;
     } else if (voteType === 'downvote') {
@@ -170,7 +170,6 @@ export class CommentsService {
       };
     }
 
-    // Update the vote count in Firestore
     await commentRef.update({ voteCount });
 
     return {
