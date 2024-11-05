@@ -33,4 +33,3 @@ Open [http://localhost:8080](http://localhost:8080) with your browser to see the
 ```bash
 npm run create-admin
 ```
->>>>>>> dcbf806 (changes)
