@@ -31,7 +31,7 @@ const dataPoint = <T>(collectionPath: string) => firestore.collection(collection
 const db: FirestoreCollections = { // Firestore collections
   users: dataPoint<User>('users'),
   posts: dataPoint<Post>('posts'),
-  comments: dataPoint<Post>('comments'),
+  comments: dataPoint<Comment>('comments'),
 };
 
 export { db, firestore, firestoreTimestamp };
