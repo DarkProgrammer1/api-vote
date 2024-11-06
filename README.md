@@ -48,11 +48,12 @@ Open [http://localhost:8080](http://localhost:8080) with your browser to see the
 Cette section décrit les principaux endpoints disponibles, leurs méthodes HTTP, paramètres et exemples de requêtes et de réponses.
 
 - **Posts**
-  Endpoint pour la creation des post 
+  
+  Endpoint pour la creation des post
   ```
     router.get('/posts/:id', this.postsController.getPostById.bind(this.postsController));
   ```
-  Endpoint pour la mis à jour des post
+  Endpoint pour la mise à jour des post
   ```
   router.put('/posts/:id', authJwt.verifyToken, validateUpdatePost, this.postsController.updatePost.bind(this.postsController));
   ```
