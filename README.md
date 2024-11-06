@@ -80,11 +80,11 @@ Cette section décrit les principaux endpoints disponibles, leurs méthodes HTTP
 
 - **Vote**
 
-  Endpoint pour le vote des posts
+ Endpoint pour le vote des posts
  ```
  router.post('/posts/:id/vote',authJwt.verifyToken,validateVote,this.postsController.voteOnPost.bind(this.postsController)  
  ```
-  Endpoint pour le vote des comments
+ Endpoint pour le vote des comments
  ```
   router.post('/comments/:id/vote',authJwt.verifyToken,validateVote,this.commentsController.voteOnComment.bind(this.commentsController));
  ```
