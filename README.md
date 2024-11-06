@@ -69,7 +69,7 @@ Cette section décrit les principaux endpoints disponibles, leurs méthodes HTTP
   ```
    router.post('/posts/:postId/comments',authJwt.verifyToken, validateCreateComment,this.commentsController.addCommentToPost.bind(this.commentsController));
   ```
-  Endpoint pour la mis à jour des comments
+  Endpoint pour la mise à jour des comments
   ```
    router.put('/comments/:id',authJwt.verifyToken,validateUpdateComment,this.commentsController.updateComment.bind(this.commentsController));
   ```
@@ -87,7 +87,7 @@ Cette section décrit les principaux endpoints disponibles, leurs méthodes HTTP
      Endpoint pour le vote des comments
  ```
   router.post('/comments/:id/vote',authJwt.verifyToken,validateVote,this.commentsController.voteOnComment.bind(this.commentsController));
-  ```
+ ```
 
   ### Comment ça marche 
 
