@@ -77,6 +77,21 @@ Cette section décrit les principaux endpoints disponibles, leurs méthodes HTTP
    router.delete('/comments/:id',authJwt.verifyToken,this.commentsController.deleteComment.bind(this.commentsController));
   ```
 
+- **Vote**
+
+  Endpoint pour le vote des posts
+ ```
+ router.post('/posts/:id/vote',authJwt.verifyToken,validateVote,this.postsController.voteOnPost.bind(this.postsController)  
+ ```
+     Endpoint pour le vote des comments
+ ```
+  router.post('/comments/:id/vote',authJwt.verifyToken,validateVote,this.commentsController.voteOnComment.bind(this.commentsController));
+  ```
+
+  ### Comment ça marche 
+
+  Les endpoints de notre API fournissent un ensemble de fonctionnalités permettant aux utilisateurs de gérer et d’interagir avec des posts et des commentaires. Les utilisateurs peuvent créer des posts, les consulter, les mettre à jour et les supprimer, tout en ayant la possibilité de commenter les posts des autres. Pour favoriser l'interaction, un système de vote est en place, permettant de voter pour ou contre des posts et des commentaires, ce qui contribue à leur popularité au sein de la communauté. Un administrateur peut modérer le contenu, en ayant des droits étendus pour gérer les utilisateurs et superviser les posts et commentaires. Tous les endpoints nécessitant des permissions spécifiques sont sécurisés par des tokens JWT, et des validations de données sont mises en place pour garantir l'intégrité des informations transmises.
+
   ### Methodes HTTP
 
   ```
